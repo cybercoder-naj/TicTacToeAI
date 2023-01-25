@@ -18,10 +18,7 @@ def player(s):
 
 def actions(s):
     play = player(s)
-    actions_list = []
-    for i in range(len(s)):
-        if s[i] == BOARD_EMPTY:
-            actions_list.append((play, i))
+    actions_list = [(play, i) for i in range(len(s)) if s[i] == BOARD_EMPTY]
     return actions_list
 
 def result(s, a):
