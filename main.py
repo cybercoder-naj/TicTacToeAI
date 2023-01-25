@@ -44,31 +44,31 @@ def terminal(s):
     
     return None
 
-def utility(s, depth):
+def utility(s, cost):
     term = terminal(s)
     if term is not None:
-        return (term, depth)
+        return (term, cost)
     
-    play = player(s)
     action_list = actions(s)
     utils = []
     for action in action_list:
         new_s = result(s, action)
-        utils.append(utility(new_s, depth + 1))
+        utils.append(utility(new_s, cost + 1))
 
     score = utils[0][0]
-    idx_depth = utils[0][1]
+    idx_cost = utils[0][1]
+    play = player(s)
     if play == BOARD_PLAYER_X:
         for i in range(len(utils)):
            if utils[i][0] > score:
                 score = utils[i][0]
-                idx_depth = utils[i][1]
+                idx_cost = utils[i][1]
     else:
         for i in range(len(utils)):
            if utils[i][0] < score:
                 score = utils[i][0]
-                idx_depth = utils[i][1]
-    return (score, idx_depth) 
+                idx_cost = utils[i][1]
+    return (score, idx_cost) 
 
 def minimax(s):
     action_list = actions(s)
