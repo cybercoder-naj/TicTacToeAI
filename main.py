@@ -53,26 +53,6 @@ def utility(s, depth):
             return (-1, depth)
         else:
             return (1, depth)
-
-        for i in range(3):
-            if s[3 * i] == s[3 * i + 1] == s[3 * i + 2] == BOARD_PLAYER_X:
-                return (1, depth)
-            if s[i] == s[i + 3] == s[i + 6] == BOARD_PLAYER_X:
-                return (1, depth)
-    
-            if s[3 * i] == s[3 * i + 1] == s[3 * i + 2] == BOARD_PLAYER_O:
-                return (-1, depth)
-            if s[i] == s[i + 3] == s[i + 6] == BOARD_PLAYER_O:
-                return (-1, depth)
-    
-        if s[0] == s[4] == s[8] == BOARD_PLAYER_X:
-            return (1, depth)
-        if s[2] == s[4] == s[6] == BOARD_PLAYER_X:
-            return (1, depth)
-        if s[0] == s[4] == s[8] == BOARD_PLAYER_O:
-            return (-1, depth)
-        if s[2] == s[4] == s[6] == BOARD_PLAYER_O:
-            return (-1, depth)
     
     play = player(s)
     action_list = actions(s)
