@@ -105,7 +105,6 @@ def minimax(s):
     if len(utils) == 0:
         return (0, (0, 0))
 
-    print(utils)
     sorted_list = sorted(utils, key=lambda l : l[0][1])
     action = min(sorted_list, key = lambda l : l[1])
     return action
@@ -127,7 +126,7 @@ def print_board(s):
         print()
 
 if __name__ == '__main__':
-    s = [0,0,0,0,0,0,0,0,0]
+    s = [BOARD_EMPTY for _ in range(9)]
     print('|------- WELCOME TO TIC TAC TOE -----------|')
     print('You are X while the Computer is O')
 
