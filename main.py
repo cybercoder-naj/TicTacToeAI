@@ -78,7 +78,7 @@ def minimax(s):
         utils.append((action, utility(new_s, 1)))
 
     if len(utils) == 0:
-        return (0, (0, 0))
+        return ((0,0), (0, 0))
 
     sorted_list = sorted(utils, key=lambda l : l[0][1])
     action = min(sorted_list, key = lambda l : l[1])
