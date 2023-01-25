@@ -31,7 +31,7 @@ def result(s, a):
     return s_copy
 
 def terminal(s):
-    if s.count(0) == 0:
+    if player(s) is None:
         return True
 
     for i in range(3):
@@ -49,6 +49,14 @@ def terminal(s):
 
 def utility(s, depth):
     if terminal(s):
+        play = player(s)
+        if play is None:
+            return (0, depth)
+        elif play is BOARD_PLAYER_X:
+            return (-1, depth)
+        else:
+            return (1, depth)
+
         for i in range(3):
             if s[3 * i] == s[3 * i + 1] == s[3 * i + 2] == BOARD_PLAYER_X:
                 return (1, depth)
@@ -69,8 +77,6 @@ def utility(s, depth):
         if s[2] == s[4] == s[6] == BOARD_PLAYER_O:
             return (-1, depth)
     
-        return (0, depth)
-
     play = player(s)
     action_list = actions(s)
     utils = []
