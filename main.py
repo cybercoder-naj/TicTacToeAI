@@ -60,23 +60,20 @@ def utility(s, depth):
     for action in action_list:
         new_s = result(s, action)
         utils.append(utility(new_s, depth + 1))
-    if play == BOARD_PLAYER_X:
-        max_score = utils[0][0]
-        idx_depth = utils[0][1]
-        for i in range(len(utils)):
-           if utils[i][0] > max_score:
-                max_score = utils[i][0]
-                idx_depth = utils[i][1]
 
-        return (max_score, idx_depth) # (max([util[0] for util in utils]), depth)
-    else:
-        min_score = utils[0][0]
-        idx_depth = utils[0][1]
+    score = utils[0][0]
+    idx_depth = utils[0][1]
+    if play == BOARD_PLAYER_X:
         for i in range(len(utils)):
-           if utils[i][0] < min_score:
-                min_score = utils[i][0]
+           if utils[i][0] > score:
+                score = utils[i][0]
                 idx_depth = utils[i][1]
-        return (min_score, idx_depth) # (min([util[0] for util in utils]), depth)
+    else:
+        for i in range(len(utils)):
+           if utils[i][0] < score:
+                score = utils[i][0]
+                idx_depth = utils[i][1]
+    return (score, idx_depth) 
 
 def minimax(s):
     action_list = actions(s)
