@@ -29,30 +29,25 @@ def result(s, a):
 
 def terminal(s):
     if player(s) is None:
-        return True
+        return 0
 
     for i in range(3):
         if s[3 * i] == s[3 * i + 1] == s[3 * i + 2] != BOARD_EMPTY:
-            return True
+            return s[3 * i]
         if s[i] == s[i + 3] == s[i + 6] != BOARD_EMPTY:
-            return True
+            return s[i]
 
     if s[0] == s[4] == s[8] != BOARD_EMPTY:
-        return True
+        return s[0]
     if s[2] == s[4] == s[6] != BOARD_EMPTY:
-        return True
+        return s[2]
     
-    return False
+    return None
 
 def utility(s, depth):
-    if terminal(s):
-        play = player(s)
-        if play is None:
-            return (0, depth)
-        elif play is BOARD_PLAYER_X:
-            return (-1, depth)
-        else:
-            return (1, depth)
+    term = terminal(s)
+    if term is not None:
+        return (term, depth)
     
     play = player(s)
     action_list = actions(s)
@@ -110,7 +105,7 @@ if __name__ == '__main__':
     print('|------- WELCOME TO TIC TAC TOE -----------|')
     print('You are X while the Computer is O')
 
-    while not terminal(s):
+    while terminal(s) is None:
         play = player(s)
         if play == BOARD_PLAYER_X:
             print('\n\nIt is your turn', end='\n\n')
