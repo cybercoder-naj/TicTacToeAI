@@ -28,9 +28,6 @@ def result(s, a):
     return s_copy
 
 def terminal(s):
-    if player(s) is None:
-        return 0
-
     for i in range(3):
         if s[3 * i] == s[3 * i + 1] == s[3 * i + 2] != BOARD_EMPTY:
             return s[3 * i]
@@ -41,6 +38,9 @@ def terminal(s):
         return s[0]
     if s[2] == s[4] == s[6] != BOARD_EMPTY:
         return s[2]
+
+    if player(s) is None:
+        return 0
     
     return None
 
